@@ -12,6 +12,7 @@ model User {
 
   email    String @unique
   password String
+  meal     Meal[]
 
   @@map("users")
 }
@@ -23,6 +24,9 @@ model Meal {
   description String?
   isCheatMeal Boolean  @map("is_cheat_meal")
   eatenAt     DateTime @map("eaten_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("meals")
 }
