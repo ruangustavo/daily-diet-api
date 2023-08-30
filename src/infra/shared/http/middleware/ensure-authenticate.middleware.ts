@@ -21,6 +21,6 @@ export async function ensureAuthenticate(
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  req.userId = verifyToken.sub
+  req.userId = verifyToken.id
   return next()
 }

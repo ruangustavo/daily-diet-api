@@ -1,7 +1,7 @@
 import { User } from '@prisma/client'
 
 export interface TokenPayload {
-  sub: string
+  id: string
   email: string
 }
 
