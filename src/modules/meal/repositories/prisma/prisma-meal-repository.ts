@@ -24,6 +24,15 @@ export class PrismaMealRepository implements MealRepository {
     return mealUpdated
   }
 
+  async findAllByUserId(userId: string): Promise<Meal[]> {
+    const meals = await prisma.meal.findMany({
+      where: {
+        userId,
+      },
+    })
+    return meals
+  }
+
   async findById(id: string): Promise<Meal | null> {
     const meal = await prisma.meal.findUnique({
       where: {

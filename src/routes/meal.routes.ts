@@ -3,6 +3,7 @@ import { Request, Response, Router } from 'express'
 import { ensureAuthenticate } from '@/infra/shared/http/middleware/ensure-authenticate.middleware'
 import { createUpdateMealController } from '@/modules/meal/usecases/update-meal'
 import { createDeleteMealController } from '@/modules/meal/usecases/delete-meal'
+import { createFindMealsByUserController } from '@/modules/meal/usecases/find-meals-by-user'
 
 export const mealRoutes = Router()
 
@@ -27,5 +28,13 @@ mealRoutes.delete(
   ensureAuthenticate,
   async (req: Request, res: Response) => {
     await createDeleteMealController.handle(req, res)
+  },
+)
+
+mealRoutes.get(
+  '/meals',
+  ensureAuthenticate,
+  async (req: Request, res: Response) => {
+    await createFindMealsByUserController.handle(req, res)
   },
 )
