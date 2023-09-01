@@ -7,6 +7,9 @@ export class PrismaMetricRepository implements MetricRepository {
       where: {
         userId,
       },
+      orderBy: {
+        eatenAt: 'asc',
+      },
     })
     return totalMealsRecorded
   }
