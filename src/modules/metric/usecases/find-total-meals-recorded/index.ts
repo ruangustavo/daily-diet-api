@@ -5,5 +5,5 @@ import { PrismaMetricRepository } from '../../repositories/prisma/prisma-metric.
 const userRepository = new PrismaUserRepository()
 const metricRepository = new PrismaMetricRepository()
 
-export const createFindTotalMealsRecordedMealController =
+export const createFindTotalMealsRecordedController =
   new FindTotalMealsRecordedController(metricRepository, userRepository)
