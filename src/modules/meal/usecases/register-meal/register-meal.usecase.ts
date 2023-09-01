@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { MealRepository } from '../../repositories/meal.repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 
-interface RegisterMealUsecaseRequest {
+interface RegisterMealRequest {
   name: string
   description?: string
   isCheatMeal: boolean
@@ -15,7 +15,7 @@ export class RegisterMealUsecase {
   ) {}
 
   async execute(
-    { name, description, isCheatMeal }: RegisterMealUsecaseRequest,
+    { name, description, isCheatMeal }: RegisterMealRequest,
     userId: string,
   ) {
     const existingUser = await this.userRepository.findById(userId)

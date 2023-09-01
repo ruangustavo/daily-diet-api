@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { MetricRepository } from '../../repositories/metric.repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 
-interface FindTotalMealsInsideDietUsecaseRequest {
+interface FindTotalMealsInsideDietRequest {
   userId: string
 }
 
@@ -12,7 +12,7 @@ export class FindTotalMealsInsideDietUsecase {
     private userRepository: UserRepository,
   ) {}
 
-  async execute({ userId }: FindTotalMealsInsideDietUsecaseRequest) {
+  async execute({ userId }: FindTotalMealsInsideDietRequest) {
     const existingUser = await this.userRepository.findById(userId)
     if (!existingUser) {
       throw new ResourceNotFoundError('User not found')

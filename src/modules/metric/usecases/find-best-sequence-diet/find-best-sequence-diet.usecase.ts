@@ -3,7 +3,7 @@ import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 import { MealRepository } from '@/modules/meal/repositories/meal.repository'
 import { Meal } from '@prisma/client'
 
-interface FindBestSequenceDietUsecaseRequest {
+interface FindBestSequenceDietRequest {
   userId: string
 }
 
@@ -13,7 +13,7 @@ export class FindBestSequenceDietUsecase {
     private userRepository: UserRepository,
   ) {}
 
-  async execute({ userId }: FindBestSequenceDietUsecaseRequest) {
+  async execute({ userId }: FindBestSequenceDietRequest) {
     const existingUser = await this.userRepository.findById(userId)
     if (!existingUser) {
       throw new ResourceNotFoundError('User not found')

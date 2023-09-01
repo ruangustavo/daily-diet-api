@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { MealRepository } from '../../repositories/meal.repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 
-interface UpdateMealUsecaseRequest {
+interface UpdateMealRequest {
   name?: string
   description?: string
   isCheatMeal?: boolean
@@ -15,7 +15,7 @@ export class UpdateMealUsecase {
   ) {}
 
   async execute(
-    { name, description, isCheatMeal }: UpdateMealUsecaseRequest,
+    { name, description, isCheatMeal }: UpdateMealRequest,
     mealId: string,
     userId: string,
   ) {

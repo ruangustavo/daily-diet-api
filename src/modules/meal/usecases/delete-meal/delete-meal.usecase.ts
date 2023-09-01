@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { MealRepository } from '../../repositories/meal.repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 
-interface DeleteMealUsecaseRequest {
+interface DeleteMealRequest {
   mealId: string
   userId: string
 }
@@ -13,7 +13,7 @@ export class DeleteMealUsecase {
     private userRepository: UserRepository,
   ) {}
 
-  async execute({ mealId, userId }: DeleteMealUsecaseRequest) {
+  async execute({ mealId, userId }: DeleteMealRequest) {
     const existingUser = await this.userRepository.findById(userId)
     if (!existingUser) {
       throw new ResourceNotFoundError('User not found')

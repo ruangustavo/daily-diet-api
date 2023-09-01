@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { MealRepository } from '../../repositories/meal.repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 
-interface FindMealsByUserUsecaseRequest {
+interface FindMealsByUserRequest {
   userId: string
 }
 
@@ -12,7 +12,7 @@ export class FindMealsByUserUsecase {
     private userRepository: UserRepository,
   ) {}
 
-  async execute({ userId }: FindMealsByUserUsecaseRequest) {
+  async execute({ userId }: FindMealsByUserRequest) {
     const existingUser = await this.userRepository.findById(userId)
     if (!existingUser) {
       throw new ResourceNotFoundError('User not found')

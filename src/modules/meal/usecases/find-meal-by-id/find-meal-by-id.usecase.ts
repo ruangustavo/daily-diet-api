@@ -1,7 +1,7 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 import { MealRepository } from '../../repositories/meal.repository'
 
-interface FindMealByIdUsecaseRequest {
+interface FindMealByIdRequest {
   mealId: string
   userId: string
 }
@@ -9,7 +9,7 @@ interface FindMealByIdUsecaseRequest {
 export class FindMealByIdUsecase {
   constructor(private mealRepository: MealRepository) {}
 
-  async execute({ mealId, userId }: FindMealByIdUsecaseRequest) {
+  async execute({ mealId, userId }: FindMealByIdRequest) {
     const existingMeal = await this.mealRepository.findById(mealId)
     if (!existingMeal) {
       throw new ResourceNotFoundError('Meal not found')
