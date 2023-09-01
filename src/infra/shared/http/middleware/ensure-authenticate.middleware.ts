@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { JwtToken } from '../../token/jwt.token'
+import { TokenExpiredError } from 'jsonwebtoken'
 
 export async function ensureAuthenticate(
   req: Request,
@@ -16,11 +17,16 @@ export async function ensureAuthenticate(
     return res.status(401).json({ message: 'Token not provided' })
   }
 
-  const verifyToken = new JwtToken().verify(token)
-  if (!verifyToken) {
+  try {
+    const verifyToken = new JwtToken().verify(token)
+    req.userId = verifyToken.id
+  } catch (error) {
+    if (error instanceof TokenExpiredError) {
+      return res.status(401).json({ message: 'Token expired. Please, reauth' })
+    }
+
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  req.userId = verifyToken.id
   return next()
 }
