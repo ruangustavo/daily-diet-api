@@ -20,4 +20,14 @@ export class PrismaMetricRepository implements MetricRepository {
     })
     return totalMealsInsideDiet
   }
+
+  async findTotalMealsOutsideDiet(userId: string): Promise<number> {
+    const totalMealsOutsideDiet = await prisma.meal.count({
+      where: {
+        userId,
+        isCheatMeal: true,
+      },
+    })
+    return totalMealsOutsideDiet
+  }
 }
