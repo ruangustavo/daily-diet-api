@@ -3,7 +3,6 @@ import { MealRepository } from '../../repositories/meal.repository'
 import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { FindMealsByUserUsecase } from './find-meals-by-user.usecase'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
-import { z } from 'zod'
 
 export class FindMealsByUserController {
   constructor(
