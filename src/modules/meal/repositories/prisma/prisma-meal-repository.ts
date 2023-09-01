@@ -32,4 +32,13 @@ export class PrismaMealRepository implements MealRepository {
     })
     return meal
   }
+
+  async delete(id: string): Promise<boolean> {
+    const result = await prisma.meal.delete({
+      where: {
+        id,
+      },
+    })
+    return !!result
+  }
 }
