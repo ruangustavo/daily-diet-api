@@ -11,4 +11,25 @@ export class PrismaMealRepository implements MealRepository {
     })
     return mealCreated
   }
+
+  async update(id: string, meal: Prisma.MealUpdateInput): Promise<Meal> {
+    const mealUpdated = await prisma.meal.update({
+      where: {
+        id,
+      },
+      data: {
+        ...meal,
+      },
+    })
+    return mealUpdated
+  }
+
+  async findById(id: string): Promise<Meal | null> {
+    const meal = await prisma.meal.findUnique({
+      where: {
+        id,
+      },
+    })
+    return meal
+  }
 }
