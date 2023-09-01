@@ -1,4 +1,4 @@
-import { createRegisterMealController } from '@/modules/meal/usecases/register-meal'
+import { createRecordMealController } from '@/modules/meal/usecases/record-meal'
 import { Request, Response, Router } from 'express'
 import { ensureAuthenticate } from '@/infra/shared/http/middleware/ensure-authenticate.middleware'
 import { createUpdateMealController } from '@/modules/meal/usecases/update-meal'
@@ -12,7 +12,7 @@ mealRoutes.post(
   '/meals',
   ensureAuthenticate,
   async (req: Request, res: Response) => {
-    await createRegisterMealController.handle(req, res)
+    await createRecordMealController.handle(req, res)
   },
 )
 

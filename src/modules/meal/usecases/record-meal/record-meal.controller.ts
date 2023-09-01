@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { MealRepository } from '../../repositories/meal.repository'
-import { RegisterMealUsecase } from './register-meal.usecase'
+import { RecordMealUsecase } from './record-meal.usecase'
 import { UserRepository } from '@/modules/user/repositories/user-repository'
 import { z } from 'zod'
 
@@ -10,7 +10,7 @@ const mealSchema = z.object({
   is_cheat_meal: z.boolean(),
 })
 
-export class RegisterMealController {
+export class RecordMealController {
   constructor(
     private mealRepository: MealRepository,
     private userRepository: UserRepository,
@@ -27,12 +27,12 @@ export class RegisterMealController {
 
     const { name, description, is_cheat_meal: isCheatMeal } = parsedData.data
 
-    const registerMealUsecase = new RegisterMealUsecase(
+    const recordMealUsecase = new RecordMealUsecase(
       this.mealRepository,
       this.userRepository,
     )
 
-    const meal = await registerMealUsecase.execute(
+    const meal = await recordMealUsecase.execute(
       { name, description, isCheatMeal },
       req.userId,
     )
